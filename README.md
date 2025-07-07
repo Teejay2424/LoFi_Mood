@@ -45,6 +45,14 @@ docker run -p 8000:8000 lofi-playlist-app
 
 
 
+### Demo
+
+[![Watch the demo](https://img.youtube.com/vi/WM1paWCGdCw/hqdefault.jpg)](https://youtu.be/WM1paWCGdCw)
+
+
+
+
+
 
 
 
