@@ -2,6 +2,13 @@
 
 **Lo-fi_mood.fm** is my personal take on a mood-based lo-fi playlist curator generator that uses natural language processing to recommend songs, for you personally based on your text input!
 
+
+
+### Demo
+
+[![Watch the demo](https://img.youtube.com/vi/WM1paWCGdCw/hqdefault.jpg)](https://youtu.be/WM1paWCGdCw)
+
+
 ## How it works
 
 - Users input a short text description of how they're feeling.
@@ -43,11 +50,6 @@ docker run -p 8000:8000 lofi-playlist-app
 ```
 
 
-
-
-### Demo
-
-[![Watch the demo](https://img.youtube.com/vi/WM1paWCGdCw/hqdefault.jpg)](https://youtu.be/WM1paWCGdCw)
 
 
 
