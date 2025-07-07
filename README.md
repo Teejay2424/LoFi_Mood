@@ -1,4 +1,12 @@
-### Demo
+## Demo
+
+![Demo of Lofi Mood.fm](demo.gif.gif)
+
+
+
+
+
+### Click Below to see the whole demo vid !
 
 [![Watch the demo](https://img.youtube.com/vi/WM1paWCGdCw/hqdefault.jpg)](https://youtu.be/WM1paWCGdCw)
 
