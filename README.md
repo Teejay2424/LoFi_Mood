@@ -1,12 +1,10 @@
-# Lo-fi_mood.fm
-
-**Lo-fi_mood.fm** is my personal take on a mood-based lo-fi playlist curator generator that uses natural language processing to recommend songs, for you personally based on your text input!
-
-
-
 ### Demo
 
 [![Watch the demo](https://img.youtube.com/vi/WM1paWCGdCw/hqdefault.jpg)](https://youtu.be/WM1paWCGdCw)
+
+# Lo-fi_mood.fm
+
+**Lo-fi_mood.fm** is my personal take on a mood-based lo-fi playlist curator generator that uses natural language processing to recommend songs, for you personally based on your text input!
 
 
 ## How it works
