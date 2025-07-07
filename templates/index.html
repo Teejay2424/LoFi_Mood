@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lofi Mood Playlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <style>
+    *     
+    {
+      box-sizing: border-box;
+    }
+
+    body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  background: linear-gradient(0deg, #b8d4f0 0%, #d4b8f0 50%, #f0b8d4 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto; 
+   }
+
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 80%, rgba(255, 192, 203, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(173, 216, 230, 0.3) 0%, transparent 50%);
+      animation: float 6s ease-in-out infinite alternate;
+      z-index: -2;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-20px) rotate(2deg); }
+    }
+
+    .particle {
+      position: fixed;
+      bottom: -30px;
+      left: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      filter: blur(4px);
+      animation: mistSlide 18s linear forwards;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @keyframes mistSlide {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+
+    #content {
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem;
+      position: relative;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
+      margin-top: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ff69b4, #87ceeb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #4a90e2;
+      border-bottom: 2px solid #ff69b4;
+      padding-bottom: 0.5rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      background: rgba(200, 200, 200, 0.08);
+      color: white;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6); 
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #ff69b4;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    }
+
+    button {
+      margin-top: 1rem;
+      background: linear-gradient(90deg, #ff69b4, #87ceeb);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+      background: linear-gradient(90deg, #87ceeb, #ff69b4);
+    }
+
+    .song {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.15); 
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 1rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .song:hover {
+      background: rgba(88, 206, 233, 0.35);
+      transform: translateX(5px);
+    }
+
+    .song img {
+      width: 100px;
+      height: 56px;
+      object-fit: cover;
+      margin-right: 1rem;
+      border-radius: 6px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .song a {
+      color: #f470c6;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .song a:hover {
+      color: #ff69b4;
+    }
+
+    #mood-message {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      color: #ff69b4;
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 105, 180, 0.1);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 105, 180, 0.2);
+    }
+
+    #note {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #5ca1e7;
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: #ed78c4;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    #bottom-button {
+      display: none;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    #bottom-button button {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="content">
+    <h1>🎵 Lofi Playlist Curator</h1>
+
+    <form id="textForm">
+      <label for="text">This lo-fi database consists of songs for every mood - whether you're looking for some upbeat tunes to start your day or you need some lo-fi to sleep to, you've come to the right place! Tell me how you're feeling below and a curated list of songs will be shown, ready for your ears to listen! <br> </label><br />
+      <input type="text" name="text" placeholder="e.g. need some study music to help me motivate myself a little" />
+      <button type="submit">Generate Playlist!</button>
+    </form>
+
+    <div id="mood-message"></div>
+    <h2>🎧 Playlist</h2>
+    <div id="playlist"></div>
+
+    <div id="bottom-button">
+      <button type="button" id="regenerate-btn">Want another playlist? Press again!</button>
+    </div>
+
+    <div id="note">
+      Note: If the model can't identify any emotions or moods, it will default to a mix of upbeat and chill lofi to keep the beats balanced.
+    </div>
+  </div>
+
+  <script>
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+
+      const size = Math.random() * 15 + 10;
+      particle.style.width = particle.style.height = `${size}px`;
+      particle.style.left = `${Math.random() * 100}vw`;
+
+      const delay = Math.random() * 10;
+      const duration = 15 + Math.random() * 10;
+      particle.style.animationDelay = `${delay}s`;
+      particle.style.animationDuration = `${duration}s`;
+
+      document.body.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, (delay + duration) * 1000);
+    }
+
+    
+    window.addEventListener("DOMContentLoaded", () => {
+      for (let i = 0; i < 20; i++) {
+        createParticle();
+      }
+    });
+
+    
+    setInterval(() => {
+      for (let i = 0; i < 4; i++) createParticle();
+    }, 150);
+
+    let emptyClickCount = 0;
+    let playlistGenerated = false;
+
+    function getVideoId(url) {
+      const match = url.match(/v=([^&]+)/);
+      return match ? match[1] : null;
+    }
+
+    function analyzeMood(text) {
+      const lowerText = text.toLowerCase();
+      
+      
+      if (lowerText.includes('happy') || lowerText.includes('excited') || lowerText.includes('energetic') ||
+          lowerText.includes('motivated') || lowerText.includes('upbeat') || lowerText.includes('positive') ||
+          lowerText.includes('celebrate') || lowerText.includes('party') || lowerText.includes('workout') ||
+          lowerText.includes('dancing') || lowerText.includes('pump up') || lowerText.includes('hype')) {
+        return "feeling upbeat so some energetic lo-fi!";
+      }
+      
+     
+      if (lowerText.includes('sad') || lowerText.includes('down') || lowerText.includes('depressed') ||
+          lowerText.includes('lonely') || lowerText.includes('blue') || lowerText.includes('melancholy') ||
+          lowerText.includes('cry') || lowerText.includes('miss') || lowerText.includes('heartbreak') ||
+          lowerText.includes('mourn') || lowerText.includes('grief')) {
+        return "feeling a bit down so some comforting lo-fi!";
+      }
+      
+      
+      if (lowerText.includes('study') || lowerText.includes('focus') || lowerText.includes('concentrate') ||
+          lowerText.includes('work') || lowerText.includes('homework') || lowerText.includes('exam') ||
+          lowerText.includes('reading') || lowerText.includes('learn') || lowerText.includes('productivity')) {
+        return "needing to focus so some study lo-fi!";
+      }
+      
+      
+      if (lowerText.includes('sleep') || lowerText.includes('tired') || lowerText.includes('relax') ||
+          lowerText.includes('wind down') || lowerText.includes('bedtime') || lowerText.includes('calm') ||
+          lowerText.includes('peaceful') || lowerText.includes('rest') || lowerText.includes('meditate')) {
+        return "wanting to relax so some sleepy lo-fi!";
+      }
+           
+      
+      
+        return "in a mixed mood so some balanced lo-fi!";
+    }
+
+    async function generatePlaylist() {
+      const input = document.querySelector('input[name="text"]').value.trim();
+      const playlistDiv = document.getElementById("playlist");
+      const moodMsg = document.getElementById("mood-message");
+      const submitBtn = document.querySelector('button[type="submit"]');
+      const bottomButton = document.getElementById("bottom-button");
+      const regenerateBtn = document.getElementById("regenerate-btn");
+
+      if (!/[a-zA-Z]/.test(input)) {
+        emptyClickCount++;
+        if (emptyClickCount === 1) moodMsg.textContent = "Please enter something to describe your mood.";
+        else if (emptyClickCount === 2) moodMsg.textContent = "PLEASE!";
+        else if (emptyClickCount === 3) moodMsg.textContent = "Oh come on now!";
+        else if (emptyClickCount === 4) moodMsg.textContent = "You don't want some curated lofi?";
+        else {
+          const sadFaces = ":(" + "(".repeat(emptyClickCount - 5);
+          moodMsg.textContent = sadFaces;
+          if (emptyClickCount >= 50) emptyClickCount = 0;
+        }
+        playlistDiv.innerHTML = "";
+        return;
+      }
+
+      emptyClickCount = 0;
+      
+      const moodAnalysis = analyzeMood(input);
+      moodMsg.textContent = `Here's a playlist for what you may currently feel :) (${moodAnalysis})`;
+
+      const res = await fetch("/recommend_from_text", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: input, num_songs: 15 })
+      });
+
+      const data = await res.json();
+      playlistDiv.innerHTML = "";
+
+      data.forEach(song => {
+        const videoId = getVideoId(song.url);
+        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+        const songDiv = document.createElement("div");
+        songDiv.className = "song";
+
+        const img = document.createElement("img");
+        img.src = thumbnailUrl;
+        img.onerror = function () {
+          this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjU2IiB2aWV3Qm94PSIwIDAgMTAwIDU2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjMzMzIi8+CjxwYXRoIGQ9Ik00MCAyOEw1NiAzN1Y0MEw0MCA0OVYyOFoiIGZpbGw9IiNmZmI2YzEiLz4KPHBhdGggZD0iTTQ0IDI4TDQ0IDQ5IiBzdHJva2U9IiNmZmI2YzEiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K';
+        };
+
+        const link = document.createElement("a");
+        link.href = song.url;
+        link.textContent = song.title;
+        link.target = "_blank";
+
+        songDiv.appendChild(img);
+        songDiv.appendChild(link);
+        playlistDiv.appendChild(songDiv);
+      });
+
+      if (!playlistGenerated) {
+        
+        submitBtn.style.display = "none";
+        bottomButton.style.display = "block";
+        playlistGenerated = true;
+      }
+    }
+
+    document.getElementById("textForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      await generatePlaylist();
+    });
+
+    document.getElementById("regenerate-btn").addEventListener("click", async () => {
+      await generatePlaylist();
+      
+      setTimeout(() => {
+        const playlistHeading = document.querySelector('h2');
+        if (playlistHeading) {
+          playlistHeading.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start',
+            inline: 'nearest'
+          });
+        }
+      }, 200); 
+    });
+  </script>
+</body>
+</html>
