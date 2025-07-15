@@ -31,7 +31,7 @@
 - Docker support for full deployment
 - Real-time playlist generation with mood tagging
 - Input example:  
-  _"Feeling anxious and need something calm to work with"_ → Generates a chill, focus-driven lo-fi mix
+  _"Feeling anxious and need something calm to work with"_ → Generates a chill, focus-driven lo-fi mix with less drums, slower tempo, and looser transitions!
 
 ## Getting Started
 
