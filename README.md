@@ -9,7 +9,7 @@
 ### Click Below to see the whole demo vid !
 
 [![Watch the demo](https://img.youtube.com/vi/WM1paWCGdCw/hqdefault.jpg)](https://youtu.be/WM1paWCGdCw) <br>
-(P.S: The demo shows what kindof beats may pop up when you may feel sleepy/tired; you can try it out with some other mood specifc prompts and notice how the songs' tempos differ)
+(P.S: The demo shows what kindof beats may pop up when you may feel sleepy/tired; you can try it out with some other mood specifc prompts and notice how the songs' tempos and instrumentation differ)
 
 
 # Lo-fi_mood.fm
