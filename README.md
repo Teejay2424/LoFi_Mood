@@ -8,7 +8,7 @@
 
 ### Click Below to see the whole demo vid !
 
-[![Watch the demo](https://img.youtube.com/vi/WM1paWCGdCw/hqdefault.jpg)](https://youtu.be/WM1paWCGdCw)
+[![Watch the demo](https://img.youtube.com/vi/WM1paWCGdCw/hqdefault.jpg)](https://youtu.be/WM1paWCGdCw) <br>
 (P.S: The demo shows what kindof beats may pop up when you may feel sleepy/tired; you can try it out with some other mood specifc prompts and notice how the songs' tempos differ)
 
 
@@ -31,7 +31,7 @@
 - Docker support for full deployment
 - Real-time playlist generation with mood tagging
 - Input example:  
-  _"Feeling anxious and need something calm to work with"_ → Generates a chill, focus-driven lo-fi mix with less drums, slower tempo, and looser transitions!
+  _"Feeling anxious and need something calm to work with"_ → Generates a chill, focus-driven lo-fi mix with less drums, slower tempo, and looser transitions.
 
 ## Getting Started
 
