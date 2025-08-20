@@ -12,9 +12,9 @@
 (P.S: The demo shows what kindof beats may pop up when you may feel sleepy/tired; you can try it out with some other mood specifc prompts and notice how the songs' tempos and instrumentation differ)
 
 
-# LoFi_Mood.fm
+# LoFi_Mood
 
-**LoFi_Mood.fm** is my personal take on a mood-based lo-fi playlist curator generator that uses natural language processing to recommend songs, depending on the user prompt.
+**LoFi_Mood** is my personal take on a mood-based lo-fi playlist curator generator that uses natural language processing to recommend songs, depending on the user prompt.
 
 
 ## How it works
@@ -38,8 +38,8 @@
 ### Run without backend
 
 ```bash
-git clone https://github.com/Teejay2424/lo-fi_mood.fm.git
-cd lo-fi_mood.fm
+git clone https://github.com/Teejay2424/lo-fi_mood.git
+cd lo-fi_mood
 # Open index.html directly in your browser
 ```
 
