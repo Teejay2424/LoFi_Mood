@@ -71,5 +71,4 @@ docker run -p 8000:8000 lofi-playlist-app
 
 
 
-Licensed under MIT. 
 Made with 💖 for lo-fi lovers ( myself included :) ).
